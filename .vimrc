@@ -1,6 +1,8 @@
 " Basic Settings ---------- {{{
 set nocompatible
 set number
+set mouse=a
+set showmatch
 set expandtab
 set tabstop=8
 set shiftwidth=4
@@ -88,6 +90,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'w0rp/ale'
 Plugin 'python-mode/python-mode'
@@ -96,6 +100,7 @@ Plugin 'maralla/completor.vim'
 Plugin 'timothycrosley/isort'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 filetype plugin indent on
@@ -104,6 +109,14 @@ filetype plugin indent on
 " Plugin Settings ---------- {{{
 " completor
 " let g:completor_auto_close_doc = 0
+
+" rainbow_parentheses
+let g:rbpt_colorpairs = [ ['brown', 'RoyalBlue3'], ['Darkblue', 'SeaGreen3'], ['darkgray', 'DarkOrchid3'], ['darkgreen', 'firebrick3'],['darkcyan', 'RoyalBlue3'],['darkred', 'SeaGreen3'],['darkmagenta', 'DarkOrchid3'],['brown', 'firebrick3'],['gray', 'RoyalBlue3'],['black',       'SeaGreen3'],['darkmagenta', 'DarkOrchid3'],['Darkblue',  'firebrick3'],['darkgreen', 'RoyalBlue3'],['darkcyan', 'SeaGreen3'],['darkred', 'DarkOrchid3'],['red', 'firebrick3'] ]
+let g:rbpt_max = 16
+
+" indentLine
+let g:indentLine_char='┆'
+let g:indentLine_enable=1
 
 " nerdcommenter
 let g:NERDSpaceDelims=1
@@ -174,6 +187,15 @@ endfunction
 augroup vimgroup
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+augroup end
+
+" colorpair group
+augroup colorpairgroup
+    autocmd!
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
 " python group
